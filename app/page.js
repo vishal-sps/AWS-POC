@@ -25,7 +25,7 @@ export default function Home() {
     <main className={styles.main}>
      <div>
       <p>Welcome {Auth?.user?.attributes?.name} {isAdmin ? ", you are from HOD Group. Show your Magic !! " : ", Let's explore or "}</p>
-      <Button onClick={handleLogout}>Logout</Button>
+      <Button onClick={handleLogout}>Logout here</Button>
       <Blog />
      </div>
     </main>

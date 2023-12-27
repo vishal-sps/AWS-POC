@@ -17,12 +17,14 @@ const PostList = ({post, handleDeletePost}) => {
     <View
     backgroundColor={tokens.colors.background.info}
     padding={tokens.space.medium}
+    width={'70%'}
   >
     <Card>
         
         <Flex
           direction="row"
-          alignItems="flex-start"
+          // alignItems="flex-start"
+          justifyContent={'space-between'}
           gap={tokens.space.xs}
         >
           

@@ -18,7 +18,7 @@ import { useEffect, useState } from 'react';
 import PostList from './PostList';
   
 const BlogList = ({blog}) => {
-    console.log("blog", blog);
+
     const { tokens } = useTheme();
 
     const [postTitle, setPostTitle] = useState("")
@@ -38,12 +38,13 @@ const BlogList = ({blog}) => {
 			},
 
 		})
+        setPostTitle('')
         setPosts([...posts, data.createPost])
 
     }
 
     const handleDeletePost = async(postId)=>{
-        console.log("deleteting...");
+        console.log("deleting...");
     
 
         try {
@@ -59,7 +60,7 @@ const BlogList = ({blog}) => {
 
         } catch (error) {
             console.log("error", );
-           Array.isArray(error?.errors) && setError(`${error?.errors[0].message}`)
+           Array.isArray(error?.errors) && error?.errors[0].errorType === "Unauthorized" && setError(`You are not authorize to delete this post. Error: ${error?.errors[0].message}`)
         }
     }
 
@@ -73,11 +74,19 @@ const BlogList = ({blog}) => {
                 }
             }).then(({data})=>{
                 setPosts(data?.listPosts?.items)
+                
             })
         } catch (error) {
             console.log("error", error);
         }
     }
+    useEffect(()=>{
+        if(error){
+            setTimeout(()=>{
+                setError("")
+            },[2500])
+        }
+    },[error])
 
     useEffect(()=>{
        getAllPost()
@@ -88,7 +97,8 @@ const BlogList = ({blog}) => {
         backgroundColor={tokens.colors.background.secondary}
         padding={tokens.space.medium}
       >
-       {error ?  <Alert variation="error" isDismissible={true}>{error}</Alert> : "" } 
+
+       {error ?  <Alert variation="error" isDismissible={true}  onDismiss={() => setError("") }>{error}</Alert> : "" } 
         <Card>
             
             <Flex
@@ -107,9 +117,16 @@ const BlogList = ({blog}) => {
         padding={tokens.space.medium}
       >
             <form onSubmit={handleCreatePost}>
+            <Flex
+              direction="row"
+              alignItems="end"
+              gap={tokens.space.xs}
+            >
             <TextField placeholder='Create title for post' value={postTitle} onChange={(e)=>setPostTitle(e.target.value)} />
-            <Button  variation="primary" type='submit'> Create Post</Button>
+            <Button  variation="primary"  type='submit'> Create Post Comment</Button>
+            </Flex>
             </form>
+       
             </View>
 
            {

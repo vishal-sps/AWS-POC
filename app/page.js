@@ -18,16 +18,17 @@ export default function Home() {
   console.log("user",Auth?.user);
   
 
-  let isAdmin = Auth?.user?.signInUserSession?.accessToken?.payload["cognito:groups"]?.includes("isAdmin") ? true : false
+  let isAdmin = Auth?.user?.signInUserSession?.accessToken?.payload["cognito:groups"]?.includes("Admin") ? true : false
 
-
+console.log("isAdmin", isAdmin);
   return (
     <main className={styles.main}>
-     <div>
-      <p>Welcome {Auth?.user?.attributes?.name} {isAdmin ? ", you are from HOD Group. Show your Magic !! " : ", Let's explore or "}</p>
+     <div className={styles.hero}>
+      <p>Welcome {Auth?.user?.attributes?.name} {isAdmin ? ", you are ADMIN. Show your Magic !! " : ", Let's explore."}</p>
       <Button onClick={handleLogout}>Logout here</Button>
-      <Blog />
      </div>
+     <Blog />
+
     </main>
   )
 }

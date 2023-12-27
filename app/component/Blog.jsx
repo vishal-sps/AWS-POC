@@ -24,6 +24,7 @@ import BlogList from './BlogList';
 
 		})
         setBlogs([...blogs, data.createBlog])
+        setTitle('')
 
     }
 
@@ -34,6 +35,7 @@ import BlogList from './BlogList';
             authMode:"AMAZON_COGNITO_USER_POOLS",
         }).then(({data})=>{
             setBlogs(data?.listBlogs?.items)
+
         })
     },[])
 
@@ -41,12 +43,18 @@ import BlogList from './BlogList';
        
              <Flex
               direction="column"
-              alignItems="flex-start"
+              width={'100%'}
               gap={tokens.space.xs}
             >
             <form onSubmit={handleCreateBlog}>
-            <TextField placeholder='Create title for blog' value={title} onChange={(e)=>setTitle(e.target.value)} />
-            <Button type='submit'> Create Blog</Button>
+            <Flex
+              direction="row"
+              alignItems="end"
+              gap={tokens.space.xs}
+            > <TextField placeholder='Create title for blog' value={title} onChange={(e)=>setTitle(e.target.value)} />
+            <Button type='submit'> Create Blog Post</Button>
+                </Flex>
+           
             </form>
 
          {blogs?.map((blog)=>{

@@ -16,7 +16,7 @@ export default function Home() {
   }
 
   console.log("user",Auth?.user);
-  
+  const username = Auth?.user?.attributes?.name
 
   let isAdmin = Auth?.user?.signInUserSession?.accessToken?.payload["cognito:groups"]?.includes("Admin") ? true : false
 
@@ -27,7 +27,7 @@ console.log("isAdmin", isAdmin);
       <p>Welcome {Auth?.user?.attributes?.name} {isAdmin ? ", you are ADMIN. Show your Magic !! " : ", Let's explore."}</p>
       <Button onClick={handleLogout}>Logout here</Button>
      </div>
-     <Blog />
+     <Blog username={username} isAdmin={isAdmin}/>
 
     </main>
   )

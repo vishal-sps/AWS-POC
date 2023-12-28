@@ -14,6 +14,9 @@
     "categories": {
       "auth": {
         "dslproject0e4f67d7": {}
+      },
+      "api": {
+        "dslproject": {}
       }
     }
   }

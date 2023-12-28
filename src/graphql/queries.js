@@ -10,6 +10,7 @@ export const getBlog = /* GraphQL */ `
         nextToken
         __typename
       }
+      username
       createdAt
       updatedAt
       owner
@@ -27,6 +28,7 @@ export const listBlogs = /* GraphQL */ `
       items {
         id
         name
+        username
         createdAt
         updatedAt
         owner
@@ -42,9 +44,11 @@ export const getPost = /* GraphQL */ `
     getPost(id: $id) {
       id
       title
+      username
       blog {
         id
         name
+        username
         createdAt
         updatedAt
         owner
@@ -72,6 +76,7 @@ export const listPosts = /* GraphQL */ `
       items {
         id
         title
+        username
         createdAt
         updatedAt
         blogPostsId
@@ -87,9 +92,11 @@ export const getComment = /* GraphQL */ `
   query GetComment($id: ID!) {
     getComment(id: $id) {
       id
+      username
       post {
         id
         title
+        username
         createdAt
         updatedAt
         blogPostsId
@@ -114,6 +121,7 @@ export const listComments = /* GraphQL */ `
     listComments(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
+        username
         content
         createdAt
         updatedAt

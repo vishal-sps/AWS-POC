@@ -13,6 +13,7 @@ export const createBlog = /* GraphQL */ `
         nextToken
         __typename
       }
+      username
       createdAt
       updatedAt
       owner
@@ -32,6 +33,7 @@ export const updateBlog = /* GraphQL */ `
         nextToken
         __typename
       }
+      username
       createdAt
       updatedAt
       owner
@@ -51,6 +53,7 @@ export const deleteBlog = /* GraphQL */ `
         nextToken
         __typename
       }
+      username
       createdAt
       updatedAt
       owner
@@ -66,9 +69,11 @@ export const createPost = /* GraphQL */ `
     createPost(input: $input, condition: $condition) {
       id
       title
+      username
       blog {
         id
         name
+        username
         createdAt
         updatedAt
         owner
@@ -94,9 +99,11 @@ export const updatePost = /* GraphQL */ `
     updatePost(input: $input, condition: $condition) {
       id
       title
+      username
       blog {
         id
         name
+        username
         createdAt
         updatedAt
         owner
@@ -122,9 +129,11 @@ export const deletePost = /* GraphQL */ `
     deletePost(input: $input, condition: $condition) {
       id
       title
+      username
       blog {
         id
         name
+        username
         createdAt
         updatedAt
         owner
@@ -149,9 +158,11 @@ export const createComment = /* GraphQL */ `
   ) {
     createComment(input: $input, condition: $condition) {
       id
+      username
       post {
         id
         title
+        username
         createdAt
         updatedAt
         blogPostsId
@@ -174,9 +185,11 @@ export const updateComment = /* GraphQL */ `
   ) {
     updateComment(input: $input, condition: $condition) {
       id
+      username
       post {
         id
         title
+        username
         createdAt
         updatedAt
         blogPostsId
@@ -199,9 +212,11 @@ export const deleteComment = /* GraphQL */ `
   ) {
     deleteComment(input: $input, condition: $condition) {
       id
+      username
       post {
         id
         title
+        username
         createdAt
         updatedAt
         blogPostsId

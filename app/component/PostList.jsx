@@ -8,6 +8,7 @@ import {
     useTheme,
     Button,
   } from '@aws-amplify/ui-react';
+import Avatar from './Avatar';
 
 const PostList = ({post, handleDeletePost}) => {
     const { tokens } = useTheme();
@@ -28,10 +29,11 @@ const PostList = ({post, handleDeletePost}) => {
           gap={tokens.space.xs}
         >
           
-
-          <Heading level={6}>
-           {post?.title}
-          </Heading>
+          <Flex direction="row" justifyContent="flex-start">
+              <Avatar userName={post?.username} />
+              <Heading level={6}>{post?.title}</Heading>
+            </Flex>
+          
 
           <Button onClick={()=>handleDeletePost(post?.id)} variation="destructive">Delete</Button>
 
